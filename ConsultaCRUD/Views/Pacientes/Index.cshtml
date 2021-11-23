@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ConsultaCRUD.Models.Paciente>
+
+@{
+    ViewBag.Title = "SMC | Paciente ";
+}
+
+<h2 class="title-index" style="color: Highlight">Lista de Pacientes</h2>
+
+<p >
+    @Html.ActionLink("Novo Paciente", "Create", "", new { @class = "btn btn-success" })
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome_pac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpf_pac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_nasc_pac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo_pac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone_pac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email_pac)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome_pac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cpf_pac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_nasc_pac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo_pac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone_pac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email_pac)
+        </td>
+        <td>
+            @Html.ActionLink("Detalhes", "Details", new { id = item.Id_pac }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id_pac }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Excluir", "Delete", new { id = item.Id_pac }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

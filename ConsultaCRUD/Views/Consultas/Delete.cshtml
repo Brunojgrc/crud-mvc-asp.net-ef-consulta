@@ -1,0 +1,51 @@
+﻿@model ConsultaCRUD.Models.Consulta
+
+@{
+    ViewBag.Title = "Excluir Consulta";
+}
+
+<h2 style="color: Highlight" >Tem certeza que deseja excluir essa consulta?</h2>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_consulta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_consulta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exame.Nome_ex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exame.Nome_ex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paciente.Nome_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Nome_pac)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+</div>
+
+<div>
+    <p style="text-align:right">
+        @Html.ActionLink("Lista de Exames", "Index", "", new { @class = "btn btn-info" })
+    </p>
+</div>

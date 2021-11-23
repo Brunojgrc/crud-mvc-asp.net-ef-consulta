@@ -1,0 +1,67 @@
+﻿@model ConsultaCRUD.Models.Paciente
+
+@{
+    ViewBag.Title = "SMC | Paciente ";
+}
+    <h2 style="color: Highlight" >Detalhes do Paciente</h2>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_nasc_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_nasc_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_pac)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <p style="text-align:right">
+        @Html.ActionLink("Lista de Pacientes", "Index", "", new { @class = "btn btn-info" })
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id_pac }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Excluir", "Delete", new { id = Model.Id_pac }, new { @class = "btn btn-danger" })
+    </p>
+</div>

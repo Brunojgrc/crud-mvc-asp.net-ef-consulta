@@ -1,0 +1,78 @@
+﻿@model ConsultaCRUD.Models.Paciente
+
+@{
+    ViewBag.Title = "SMC | Paciente ";
+}
+
+<h2 style="color: Highlight" >Excluir Paciente</h2>
+
+<h3>Tem certeza que deseja excluir esse paciente?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_nasc_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_nasc_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone_pac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_pac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_pac)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+
+        </div>
+    }
+</div>
+<div>
+    <p style="text-align:right">
+        @Html.ActionLink("Lista de Pacientes", "Index", "", new { @class = "btn btn-info" })
+    </p>
+</div>

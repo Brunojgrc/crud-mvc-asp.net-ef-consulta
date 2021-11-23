@@ -1,0 +1,47 @@
+﻿@model ConsultaCRUD.Models.Consulta
+
+@{
+    ViewBag.Title = "SMC | Consulta";
+}
+
+<div style="background-color: lightblue" class="jumbotron">
+    <!--<h2>SMC - SISTEMA DE MARCAÇÃO DE CONSULTAS</h2>-->
+    <h1>O que você gostaria de agendar?</h1>
+    <h3>Agende consultas de forma rápida e fácil.</h3>
+
+</div>
+
+<div class="row">
+    <div style=" padding-left:50px; text-align:center">
+        <div class="col-md-4">
+            <h2>@Html.ActionLink("Pacientes", "Index", "Pacientes")</h2>
+        </div>
+        <div class="col-md-4">
+            <h2>@Html.ActionLink("Exames", "Index", "Exames")</h2>
+
+        </div>
+        <div class="col-md-4">
+            <h2>@Html.ActionLink("Consultas", "Index", "Consultas")</h2>
+            <!--<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>-->
+        </div>
+    </div>
+</div>
+
+<div style="display:flex; justify-content: space-around;">
+    <div class="card" style="width: 18rem;">
+        <img style="border-radius: 5px; width: 25rem" ; class="card-img-top" src="~/Img/Paciente.jpg" alt="imagem paciente feliz">
+        <div class="card-body">
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <img style="border-radius: 5px; width: 25rem" ; class="card-img-top" src="~/Img/Exames.png" alt="imagem exame">
+        <div class="card-body">
+        </div>
+    </div>
+    <div class="card" style="width: 18rem; text-align: center ">
+        <img style=" border-radius: 5px; width: 25rem" ; class="card-img-top" src="~/Img/Consulta.png" alt="iamgem de agendamento">
+        <div style="text-align: center" class="card-body">
+            <p></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbConsultaCadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Consulta">
+    <Key>
+      <PropertyRef Name="Id_consulta" />
+    </Key>
+    <Property Name="Id_consulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_paciente" Type="int" />
+    <Property Name="ID_exame" Type="int" />
+    <Property Name="Data_consulta" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Exame">
+    <Key>
+      <PropertyRef Name="Id_ex" />
+    </Key>
+    <Property Name="Id_ex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome_ex" Type="varchar" MaxLength="100" />
+    <Property Name="Descicao" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Observacao" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="Id_pac" />
+    </Key>
+    <Property Name="Id_pac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome_pac" Type="varchar" MaxLength="100" />
+    <Property Name="Cpf_pac" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="Data_nasc_pac" Type="datetime" Nullable="false" />
+    <Property Name="Sexo_pac" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Telefone_pac" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Email_pac" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Consulta__ID_exa__32E0915F">
+    <End Role="Exame" Type="Self.Exame" Multiplicity="0..1" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exame">
+        <PropertyRef Name="Id_ex" />
+      </Principal>
+      <Dependent Role="Consulta">
+        <PropertyRef Name="ID_exame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Consulta__Id_pac__31EC6D26">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id_pac" />
+      </Principal>
+      <Dependent Role="Consulta">
+        <PropertyRef Name="Id_paciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbConsultaCadModelStoreContainer">
+    <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exame" EntityType="Self.Exame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Consulta__ID_exa__32E0915F" Association="Self.FK__Consulta__ID_exa__32E0915F">
+      <End Role="Exame" EntitySet="Exame" />
+      <End Role="Consulta" EntitySet="Consulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Consulta__Id_pac__31EC6D26" Association="Self.FK__Consulta__Id_pac__31EC6D26">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Consulta" EntitySet="Consulta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

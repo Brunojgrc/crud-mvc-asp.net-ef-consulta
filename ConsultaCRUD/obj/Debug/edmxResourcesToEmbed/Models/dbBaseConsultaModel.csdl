@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbConsultaCadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Consulta">
+    <Key>
+      <PropertyRef Name="Id_consulta" />
+    </Key>
+    <Property Name="Id_consulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_paciente" Type="Int32" />
+    <Property Name="ID_exame" Type="Int32" />
+    <Property Name="Data_consulta" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Exame" Relationship="Self.FK__Consulta__ID_exa__32E0915F" FromRole="Consulta" ToRole="Exame" />
+    <NavigationProperty Name="Paciente" Relationship="Self.FK__Consulta__Id_pac__31EC6D26" FromRole="Consulta" ToRole="Paciente" />
+  </EntityType>
+  <EntityType Name="Exame">
+    <Key>
+      <PropertyRef Name="Id_ex" />
+    </Key>
+    <Property Name="Id_ex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome_ex" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descicao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Observacao" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Consulta" Relationship="Self.FK__Consulta__ID_exa__32E0915F" FromRole="Exame" ToRole="Consulta" />
+  </EntityType>
+  <EntityType Name="Paciente">
+    <Key>
+      <PropertyRef Name="Id_pac" />
+    </Key>
+    <Property Name="Id_pac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome_pac" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Cpf_pac" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Data_nasc_pac" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sexo_pac" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefone_pac" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email_pac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Consulta" Relationship="Self.FK__Consulta__Id_pac__31EC6D26" FromRole="Paciente" ToRole="Consulta" />
+  </EntityType>
+  <Association Name="FK__Consulta__ID_exa__32E0915F">
+    <End Role="Exame" Type="Self.Exame" Multiplicity="0..1" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exame">
+        <PropertyRef Name="Id_ex" />
+      </Principal>
+      <Dependent Role="Consulta">
+        <PropertyRef Name="ID_exame" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Consulta__Id_pac__31EC6D26">
+    <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paciente">
+        <PropertyRef Name="Id_pac" />
+      </Principal>
+      <Dependent Role="Consulta">
+        <PropertyRef Name="Id_paciente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbConsultaCadEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Consulta" EntityType="Self.Consulta" />
+    <EntitySet Name="Exame" EntityType="Self.Exame" />
+    <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+    <AssociationSet Name="FK__Consulta__ID_exa__32E0915F" Association="Self.FK__Consulta__ID_exa__32E0915F">
+      <End Role="Exame" EntitySet="Exame" />
+      <End Role="Consulta" EntitySet="Consulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Consulta__Id_pac__31EC6D26" Association="Self.FK__Consulta__Id_pac__31EC6D26">
+      <End Role="Paciente" EntitySet="Paciente" />
+      <End Role="Consulta" EntitySet="Consulta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

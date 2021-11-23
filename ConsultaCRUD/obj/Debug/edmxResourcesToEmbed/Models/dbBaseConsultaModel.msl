@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbConsultaCadModelStoreContainer" CdmEntityContainer="dbConsultaCadEntities">
+    <EntitySetMapping Name="Consulta">
+      <EntityTypeMapping TypeName="dbConsultaCadModel.Consulta">
+        <MappingFragment StoreEntitySet="Consulta">
+          <ScalarProperty Name="Id_consulta" ColumnName="Id_consulta" />
+          <ScalarProperty Name="Id_paciente" ColumnName="Id_paciente" />
+          <ScalarProperty Name="ID_exame" ColumnName="ID_exame" />
+          <ScalarProperty Name="Data_consulta" ColumnName="Data_consulta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exame">
+      <EntityTypeMapping TypeName="dbConsultaCadModel.Exame">
+        <MappingFragment StoreEntitySet="Exame">
+          <ScalarProperty Name="Id_ex" ColumnName="Id_ex" />
+          <ScalarProperty Name="Nome_ex" ColumnName="Nome_ex" />
+          <ScalarProperty Name="Descicao" ColumnName="Descicao" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paciente">
+      <EntityTypeMapping TypeName="dbConsultaCadModel.Paciente">
+        <MappingFragment StoreEntitySet="Paciente">
+          <ScalarProperty Name="Id_pac" ColumnName="Id_pac" />
+          <ScalarProperty Name="Nome_pac" ColumnName="Nome_pac" />
+          <ScalarProperty Name="Cpf_pac" ColumnName="Cpf_pac" />
+          <ScalarProperty Name="Data_nasc_pac" ColumnName="Data_nasc_pac" />
+          <ScalarProperty Name="Sexo_pac" ColumnName="Sexo_pac" />
+          <ScalarProperty Name="Telefone_pac" ColumnName="Telefone_pac" />
+          <ScalarProperty Name="Email_pac" ColumnName="Email_pac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbConsultaCadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Consulta">
+          <Key>
+            <PropertyRef Name="Id_consulta" />
+          </Key>
+          <Property Name="Id_consulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_paciente" Type="int" />
+          <Property Name="ID_exame" Type="int" />
+          <Property Name="Data_consulta" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Exame">
+          <Key>
+            <PropertyRef Name="Id_ex" />
+          </Key>
+          <Property Name="Id_ex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_ex" Type="varchar" MaxLength="100" />
+          <Property Name="Descicao" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Observacao" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="Id_pac" />
+          </Key>
+          <Property Name="Id_pac" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_pac" Type="varchar" MaxLength="100" />
+          <Property Name="Cpf_pac" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Data_nasc_pac" Type="datetime" Nullable="false" />
+          <Property Name="Sexo_pac" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telefone_pac" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email_pac" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Consulta__ID_exa__32E0915F">
+          <End Role="Exame" Type="Self.Exame" Multiplicity="0..1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exame">
+              <PropertyRef Name="Id_ex" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_exame" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consulta__Id_pac__31EC6D26">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="Id_pac" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="Id_paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbConsultaCadModelStoreContainer">
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exame" EntityType="Self.Exame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Consulta__ID_exa__32E0915F" Association="Self.FK__Consulta__ID_exa__32E0915F">
+            <End Role="Exame" EntitySet="Exame" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consulta__Id_pac__31EC6D26" Association="Self.FK__Consulta__Id_pac__31EC6D26">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbConsultaCadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Consulta">
+          <Key>
+            <PropertyRef Name="Id_consulta" />
+          </Key>
+          <Property Name="Id_consulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_paciente" Type="Int32" />
+          <Property Name="ID_exame" Type="Int32" />
+          <Property Name="Data_consulta" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Exame" Relationship="Self.FK__Consulta__ID_exa__32E0915F" FromRole="Consulta" ToRole="Exame" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Consulta__Id_pac__31EC6D26" FromRole="Consulta" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Exame">
+          <Key>
+            <PropertyRef Name="Id_ex" />
+          </Key>
+          <Property Name="Id_ex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_ex" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descicao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Observacao" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK__Consulta__ID_exa__32E0915F" FromRole="Exame" ToRole="Consulta" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="Id_pac" />
+          </Key>
+          <Property Name="Id_pac" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_pac" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cpf_pac" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_nasc_pac" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sexo_pac" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefone_pac" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_pac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK__Consulta__Id_pac__31EC6D26" FromRole="Paciente" ToRole="Consulta" />
+        </EntityType>
+        <Association Name="FK__Consulta__ID_exa__32E0915F">
+          <End Role="Exame" Type="Self.Exame" Multiplicity="0..1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exame">
+              <PropertyRef Name="Id_ex" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_exame" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consulta__Id_pac__31EC6D26">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="0..1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="Id_pac" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="Id_paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbConsultaCadEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" />
+          <EntitySet Name="Exame" EntityType="Self.Exame" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+          <AssociationSet Name="FK__Consulta__ID_exa__32E0915F" Association="Self.FK__Consulta__ID_exa__32E0915F">
+            <End Role="Exame" EntitySet="Exame" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consulta__Id_pac__31EC6D26" Association="Self.FK__Consulta__Id_pac__31EC6D26">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbConsultaCadModelStoreContainer" CdmEntityContainer="dbConsultaCadEntities">
+          <EntitySetMapping Name="Consulta">
+            <EntityTypeMapping TypeName="dbConsultaCadModel.Consulta">
+              <MappingFragment StoreEntitySet="Consulta">
+                <ScalarProperty Name="Id_consulta" ColumnName="Id_consulta" />
+                <ScalarProperty Name="Id_paciente" ColumnName="Id_paciente" />
+                <ScalarProperty Name="ID_exame" ColumnName="ID_exame" />
+                <ScalarProperty Name="Data_consulta" ColumnName="Data_consulta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exame">
+            <EntityTypeMapping TypeName="dbConsultaCadModel.Exame">
+              <MappingFragment StoreEntitySet="Exame">
+                <ScalarProperty Name="Id_ex" ColumnName="Id_ex" />
+                <ScalarProperty Name="Nome_ex" ColumnName="Nome_ex" />
+                <ScalarProperty Name="Descicao" ColumnName="Descicao" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="dbConsultaCadModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="Id_pac" ColumnName="Id_pac" />
+                <ScalarProperty Name="Nome_pac" ColumnName="Nome_pac" />
+                <ScalarProperty Name="Cpf_pac" ColumnName="Cpf_pac" />
+                <ScalarProperty Name="Data_nasc_pac" ColumnName="Data_nasc_pac" />
+                <ScalarProperty Name="Sexo_pac" ColumnName="Sexo_pac" />
+                <ScalarProperty Name="Telefone_pac" ColumnName="Telefone_pac" />
+                <ScalarProperty Name="Email_pac" ColumnName="Email_pac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
